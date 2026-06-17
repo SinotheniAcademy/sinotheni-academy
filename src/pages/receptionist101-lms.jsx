@@ -128,7 +128,6 @@ function LockScreen({ courseId, courseTitle, courseType, coursePrice, onUnlock }
 
   function doUnlock(code, name) {
     activateCode(code, name);
-    activateCodeRemote(code.code, name);
     sessionStorage.setItem(sessionKey(courseId), JSON.stringify({ code: code.code, name }));
     onUnlock({ code: code.code, name });
   }
@@ -228,6 +227,8 @@ Kind regards,`);
                 type="text"
                 value={inputName}
                 onChange={e => setInputName(e.target.value)}
+                onInput={e => setInputName(e.target.value)}
+                autoComplete="off"
                 onKeyDown={e => e.key === "Enter" && doName()}
                 placeholder="e.g. Thandi Dlamini"
                 style={{ width:"100%", padding:"13px 14px", fontFamily:"'Montserrat',sans-serif", fontSize:14, border:"1px solid #222", background:"#1a1a1a", color:"#fff", outline:"none", textAlign:"center", marginBottom:error?10:14, boxSizing:"border-box" }}
