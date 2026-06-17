@@ -886,6 +886,13 @@ export default function App() {
   if (!_unlocked) {
     return <LockScreen courseId={COURSE_ID} courseTitle={COURSE_TITLE} courseType={COURSE_TYPE} coursePrice={COURSE_PRICE} onUnlock={data => {
       _setUnlocked(data);
+      setScreen("profile");
+      if(data.name) {
+        const nameParts = data.name.trim().split(" ");
+        const fn = nameParts[0] || data.name;
+        const ln = nameParts.slice(1).join(" ") || "";
+        setProfile(p=>({...p, firstName:fn, lastName:ln}));
+      }
     }} />;
   }
 
@@ -940,7 +947,7 @@ export default function App() {
     const pct=finalScore.pct;
     const grade=pct>=90?"outstanding":pct>=80?"excellent":pct>=70?"very good":"solid";
     const remarks=`${profile.firstName} ${profile.lastName} successfully completed Bar Service 101 with a score of ${pct}% in the final assessment. Throughout the programme, ${profile.firstName} completed the programme demonstrating solid knowledge of professional bar operations, beverage service, responsible alcohol service and the guest-facing standards expected in South African hospitality environments.`;
-    const achievement=`In completing this programme, they have shown a thorough understanding of bar station management, glassware care, beverage knowledge, pour standards and responsible service of alcohol.`;
+    const achievement=`In completing this programme, they have shown a thorough understanding of the professional standards covered in this course, glassware care, beverage knowledge, pour standards and responsible service of alcohol.`;
     setDocs({remarks,achievement,date});setScreen("docs");
     if(_unlocked?.userId)saveCourseCompletion(_unlocked.userId,COURSE_ID,COURSE_TITLE,`${profile.firstName} ${profile.lastName}`,profile.email||_unlocked.email||'',finalScore.score,finalScore.total,certHTML(`${profile.firstName} ${profile.lastName}`,date,achievement,MODULE_NAMES),transcriptHTML(`${profile.firstName} ${profile.lastName}`,finalScore.score,finalScore.total,date,remarks,MODULE_NAMES));
   }
@@ -989,7 +996,7 @@ export default function App() {
           <div style={{display:"flex",gap:14,marginBottom:40,flexWrap:"wrap",alignItems:"flex-start"}}>
             <div style={{background:"#111",border:`2px solid ${G}`,padding:"18px 22px",minWidth:170}}>
               <div style={{fontFamily:"'Montserrat',sans-serif",fontSize:8,color:G,letterSpacing:3,marginBottom:5}}>COURSE FEE</div>
-              <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:42,fontWeight:700,color:"#fff",lineHeight:1}}>R350</div>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:42,fontWeight:700,color:"#fff",lineHeight:1}}>R {COURSE_PRICE}</div>
               <div style={{borderTop:"1px solid #222",marginTop:12,paddingTop:12}}>{["Once-off payment","Certificate included","Lifetime access","Fully online"].map((f,i)=>(<div key={i} style={{display:"flex",gap:7,marginBottom:5,alignItems:"center"}}><div style={{width:4,height:4,borderRadius:"50%",background:G}}/><div style={{fontFamily:"'Montserrat',sans-serif",fontSize:10,color:"#aaa"}}>{f}</div></div>))}</div>
             </div>
             <div>
@@ -1029,7 +1036,7 @@ export default function App() {
     return(<div style={S.wrap}><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/><Header/>
     <div style={{padding:"24px 20px",maxWidth:760,margin:"0 auto"}}>
       <div style={{background:BK,padding:"20px 24px",marginBottom:18,display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:12}}>
-        <div><span style={S.tag}>BAR SERVICE 101</span><div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:24,fontWeight:700,color:"#fff",marginBottom:2}}>Welcome back, {profile.firstName}</div><div style={{fontFamily:"'Montserrat',sans-serif",fontSize:11,color:"#666"}}>{total} of {CHAPTERS.length} modules complete · {pct}% progress</div></div>
+        <div><span style={S.tag}>{COURSE_TITLE}</span><div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:24,fontWeight:700,color:"#fff",marginBottom:2}}>Welcome back, {profile.firstName}</div><div style={{fontFamily:"'Montserrat',sans-serif",fontSize:11,color:"#666"}}>{total} of {CHAPTERS.length} modules complete · {pct}% progress</div></div>
         <div style={{textAlign:"right"}}><div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:38,fontWeight:700,color:G,lineHeight:1}}>{pct}%</div><div style={{fontFamily:"'Montserrat',sans-serif",fontSize:8,color:"#555",letterSpacing:2}}>COMPLETE</div></div>
       </div>
       <div style={{height:4,background:"#e0d8cc",borderRadius:2,marginBottom:20}}><div style={{height:"100%",width:`${pct}%`,background:G,borderRadius:2,transition:"width 0.5s"}}/></div>

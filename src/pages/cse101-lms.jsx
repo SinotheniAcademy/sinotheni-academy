@@ -885,6 +885,13 @@ export default function App() {
   if (!_unlocked) {
     return <LockScreen courseId={COURSE_ID} courseTitle={COURSE_TITLE} courseType={COURSE_TYPE} coursePrice={COURSE_PRICE} onUnlock={data => {
       _setUnlocked(data);
+      setScreen("profile");
+      if(data.name) {
+        const nameParts = data.name.trim().split(" ");
+        const fn = nameParts[0] || data.name;
+        const ln = nameParts.slice(1).join(" ") || "";
+        setProfile(p=>({...p, firstName:fn, lastName:ln}));
+      }
     }} />;
   }
 
@@ -988,7 +995,7 @@ export default function App() {
           <div style={{display:"flex",gap:14,marginBottom:40,flexWrap:"wrap",alignItems:"flex-start"}}>
             <div style={{background:"#111",border:`2px solid ${G}`,padding:"18px 22px",minWidth:170}}>
               <div style={{fontFamily:"'Montserrat',sans-serif",fontSize:8,color:G,letterSpacing:3,marginBottom:5}}>COURSE FEE</div>
-              <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:42,fontWeight:700,color:"#fff",lineHeight:1}}>R350</div>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:42,fontWeight:700,color:"#fff",lineHeight:1}}>R {COURSE_PRICE}</div>
               <div style={{borderTop:"1px solid #222",marginTop:12,paddingTop:12}}>{["Once-off payment","Certificate included","Lifetime access","Fully online"].map((f,i)=>(<div key={i} style={{display:"flex",gap:7,marginBottom:5,alignItems:"center"}}><div style={{width:4,height:4,borderRadius:"50%",background:G}}/><div style={{fontFamily:"'Montserrat',sans-serif",fontSize:10,color:"#aaa"}}>{f}</div></div>))}</div>
             </div>
             <div>
