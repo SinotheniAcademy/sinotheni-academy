@@ -480,11 +480,9 @@ export default function App() {
   const [qSelected, setQSelected] = useState(null);
   const [speaking, setSpeaking] = useState(false);
 
-  useEffect(()=>{
   if (!_unlocked) {
     return <LockScreen courseId={COURSE_ID} courseTitle={COURSE_TITLE} courseType={COURSE_TYPE} coursePrice={COURSE_PRICE} onUnlock={async data => {
       _setUnlocked(data);
-      // Load saved progress from Supabase
       const saved = await loadProgress(data.code, COURSE_ID);
       if (saved) {
         if (saved.completedChapters) setCompletedChapters(new Set(saved.completedChapters));
@@ -494,8 +492,7 @@ export default function App() {
     }} />;
   }
 
-  // Student is unlocked, pre-fill profile if not set
-  // (profile name will be pre-populated from the access code)
+  useEffect(()=>{
     const saved=loadState();
     if(saved){
       if(saved.profile) setProfile(saved.profile);

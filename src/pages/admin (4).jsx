@@ -746,11 +746,11 @@ const COURSES = [
 ];
 
 const DEFAULT_BANKING = {
-  bank: "Standard Bank",
-  accountName: "Asinotheni In Trading (Pty) Ltd",
-  accountNo: "10146048316",
-  branchCode: "051001",
-  accountType: "Cheque Account",
+  bank:"",
+  accountName:"Sinotheni In Trading (Pty) Ltd",
+  accountNo:"",
+  branchCode:"",
+  accountType:"Cheque Account",
   ref:"Student Full Name and Course Name"
 };
 
@@ -986,6 +986,13 @@ Your progress is saved automatically as you complete each module.
 If you need to return to the course later, go back to the same link (Step 1) and enter your code again. You will continue from where you left off.
 Your certificate downloads automatically once you pass the final assessment.
 We respond to all queries within 48 hours.
+
+PAYMENT DETAILS (if not yet paid):
+Bank: FNB
+Account Name: Sinotheni In Trading (Pty) Ltd
+Account Number: 63017397843
+Branch Code: 250655
+Reference: Your Full Name and Course Name
 
 If you have any difficulty accessing your course, email us at:
 academy@sinothenievents.co.za or call 083 249-5709
