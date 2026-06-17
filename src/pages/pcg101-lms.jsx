@@ -868,18 +868,6 @@ export default function App() {
   const [qSelected, setQSelected] = useState(null);
   const [speaking, setSpeaking] = useState(false);
 
-  if (!_unlocked) {
-    return <LockScreen courseId={COURSE_ID} courseTitle={COURSE_TITLE} courseType={COURSE_TYPE} coursePrice={COURSE_PRICE} onUnlock={async data => {
-      _setUnlocked(data);
-      const saved = await loadProgress(data.code, COURSE_ID);
-      if (saved) {
-        if (saved.completedChapters) setCompletedChapters(new Set(saved.completedChapters));
-        if (saved.currentChapter !== undefined) setCurrentChapter(saved.currentChapter);
-        if (saved.screen) setScreen(saved.screen === 'exam' ? 'dashboard' : saved.screen);
-      }
-    }} />;
-  }
-
   useEffect(()=>{
     const saved=loadState();
     if(saved){
@@ -891,6 +879,18 @@ export default function App() {
       if(saved.profile?.firstName) setScreen("dashboard");
     }
   },[]);
+
+  if (!_unlocked) {
+    return <LockScreen courseId={COURSE_ID} courseTitle={COURSE_TITLE} courseType={COURSE_TYPE} coursePrice={COURSE_PRICE} onUnlock={async data => {
+      _setUnlocked(data);
+      const saved = await loadProgress(data.code, COURSE_ID);
+      if (saved) {
+        if (saved.completedChapters) setCompletedChapters(new Set(saved.completedChapters));
+        if (saved.currentChapter !== undefined) setCurrentChapter(saved.currentChapter);
+        if (saved.screen) setScreen(saved.screen === 'exam' ? 'dashboard' : saved.screen);
+      }
+    }} />;
+  }
 
   function persist(u){saveState({profile,chapterProgress,chapterTestProgress,finalPassed,finalScore,...u});}
   function isUnlocked(ci){return ci===0||chapterTestProgress[CHAPTERS[ci-1].id]?.passed===true;}
