@@ -883,14 +883,8 @@ export default function App() {
   },[]);
 
   if (!_unlocked) {
-    return <LockScreen courseId={COURSE_ID} courseTitle={COURSE_TITLE} courseType={COURSE_TYPE} coursePrice={COURSE_PRICE} onUnlock={async data => {
+    return <LockScreen courseId={COURSE_ID} courseTitle={COURSE_TITLE} courseType={COURSE_TYPE} coursePrice={COURSE_PRICE} onUnlock={data => {
       _setUnlocked(data);
-      const saved = await loadProgress(data.code, COURSE_ID);
-      if (saved) {
-        if (saved.completedChapters) setCompletedChapters(new Set(saved.completedChapters));
-        if (saved.currentChapter !== undefined) setCurrentChapter(saved.currentChapter);
-        if (saved.screen) setScreen(saved.screen === 'exam' ? 'dashboard' : saved.screen);
-      }
     }} />;
   }
 
