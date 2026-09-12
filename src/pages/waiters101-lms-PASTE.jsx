@@ -215,10 +215,10 @@ async function saveProgress(code, courseId, studentName, progressData) {
 }
 
 const G = "#C9A84C", BK = "#0D0D0D", CR = "#FAF7F2";
-const STORE_KEY = "se_waiters101_v1";
+const STORE_KEY = "se_food_bev_v1";
 const ACADEMY_KEY = "se_academy_status_v1";
-const COURSE_ID = "waiters101";
-const COURSE_TITLE = "Waiters 101";
+const COURSE_ID = "food-beverage-service";
+const COURSE_TITLE = "Professional Food \u0026 Beverage Service";
 const COURSE_TYPE = "SHORT COURSE";
 const COURSE_PRICE = 350;
 
@@ -245,12 +245,12 @@ function certHTML(name, date, achievement, modules) {
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,700&family=Montserrat:wght@300;400;500;600;700;800&family=Cinzel:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-@page{size:297mm 210mm;margin:0;}
+@page{size:210mm 297mm;margin:0;}
 html,body{background:#FAF7F2;font-family:'Montserrat',sans-serif;}
 .savebar{position:fixed;top:0;left:0;right:0;background:#0A0A0A;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;z-index:999;gap:12px;}
 .savebar p{font-size:11px;color:#FAF7F2;letter-spacing:0.5px;line-height:1.5;margin:0;}
 .savebar button{background:#C9A84C;color:#0A0A0A;border:none;padding:10px 22px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:2px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
-.page{width:297mm;height:210mm;background:#FAF7F2;position:relative;margin:56px auto 0;}
+.page{width:210mm;height:297mm;background:#FAF7F2;position:relative;margin:56px auto 0;}
 .b-outer{position:absolute;inset:9mm;border:2px solid #C9A84C;z-index:5;}
 .b-inner{position:absolute;inset:12.5mm;border:1px solid #A07830;opacity:0.4;z-index:5;}
 .c-orn{position:absolute;z-index:6;line-height:0;}
@@ -270,8 +270,8 @@ html,body{background:#FAF7F2;font-family:'Montserrat',sans-serif;}
 .cert-course{font-family:'Cormorant Garamond',serif;font-size:14pt;font-weight:700;color:#0A0A0A;letter-spacing:3px;text-transform:uppercase;}
 .zone-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5mm;padding:3mm 0;}
 .awarded{font-family:'Montserrat',sans-serif;font-size:6.5pt;letter-spacing:5px;color:#aaa;text-transform:uppercase;}
-.student-name{font-family:'Cormorant Garamond',serif;font-size:48pt;font-weight:400;font-style:italic;color:#0A0A0A;line-height:1.05;letter-spacing:1px;}
-.name-rule{width:175mm;height:1px;background:linear-gradient(90deg,transparent,#C9A84C 15%,#C9A84C 85%,transparent);}
+.student-name{font-family:'Cormorant Garamond',serif;font-size:40pt;font-weight:400;font-style:italic;color:#0A0A0A;line-height:1.1;letter-spacing:1px;}
+.name-rule{width:140mm;height:1px;background:linear-gradient(90deg,transparent,#C9A84C 20%,#C9A84C 80%,transparent);}
 .achievement{font-family:'Montserrat',sans-serif;font-size:7pt;color:#777;line-height:2;max-width:170mm;letter-spacing:0.3px;}
 .zone-bot{display:flex;justify-content:space-between;align-items:flex-end;padding-top:4mm;border-top:1px solid rgba(201,168,76,0.3);}
 .sig{display:flex;flex-direction:column;align-items:center;gap:1.5mm;min-width:55mm;}
@@ -284,7 +284,7 @@ html,body{background:#FAF7F2;font-family:'Montserrat',sans-serif;}
 </style>
 </head>
 <body>
-<div class="savebar"><button onclick="try{window.close();}catch(e){history.back();}" style="background:transparent;border:1px solid #444;color:#888;padding:7px 12px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:600;letter-spacing:1.5px;cursor:pointer;">&#8592; Back to course</button><p>Destination: <strong>Save as PDF</strong> | Orientation: <strong>Landscape</strong></p><button onclick="window.print()">Save as PDF</button></div>
+<div class="savebar"><button onclick="try{window.close();}catch(e){history.back();}" style="background:transparent;border:1px solid #444;color:#888;padding:7px 12px;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:600;letter-spacing:1.5px;cursor:pointer;">&#8592; Back to course</button><p>Destination: <strong>Save as PDF</strong> </p><button onclick="window.print()">Save as PDF</button></div>
 <div class="page">
   <div class="b-outer"></div>
   <div class="b-inner"></div>
@@ -296,8 +296,8 @@ html,body{background:#FAF7F2;font-family:'Montserrat',sans-serif;}
   <div class="body">
     <div class="zone-top">
       <div class="mono">SE</div>
-      <div class="acad-name">Sinotheni Events</div>
-      <div class="acad-sub">Training Academy</div>
+      <div class="acad-name">Sinotheni Events Academy</div>
+      <div class="acad-sub">The Foundations Series</div>
       <div class="rule"></div>
       <div class="cert-label">Certificate of Completion</div>
       <div class="cert-course">${COURSE_TITLE}</div>
@@ -859,8 +859,8 @@ export default function App() {
             <span style={{background:"#1a1a1a",color:"#aaa",fontFamily:"'Montserrat',sans-serif",fontSize:8,letterSpacing:2,padding:"3px 10px",border:"1px solid #333"}}>FULLY ONLINE</span>
           </div>
           <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:50,fontWeight:700,color:"#fff",lineHeight:1.0,marginBottom:4}}>{COURSE_TITLE}</div>
-          <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:18,color:G,marginBottom:14,fontStyle:"italic"}}>Professional Waiting and Guest Service Standards</div>
-          <div style={{fontFamily:"'Montserrat',sans-serif",fontSize:12,color:"#aaa",maxWidth:520,lineHeight:1.9,marginBottom:28}}>The complete professional standard for waiters across restaurants, hotels and events. Eleven modules covering guest service, table technique, menu knowledge, complaint handling and the conduct expected of a hospitality professional in South Africa and internationally.</div>
+          <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:18,color:G,marginBottom:14,fontStyle:"italic"}}>Professional Food and Beverage Service Standards</div>
+          <div style={{fontFamily:"'Montserrat',sans-serif",fontSize:12,color:"#aaa",maxWidth:520,lineHeight:1.9,marginBottom:28}}>The complete professional standard for food and beverage service across restaurants, hotels and events. Eleven modules covering table service, guest interaction, menu knowledge, allergen awareness, complaint handling and the professional standards expected in South African and international hospitality.</div>
           <div style={{display:"flex",gap:14,marginBottom:40,flexWrap:"wrap",alignItems:"flex-start"}}>
             <div style={{background:"#111",border:`2px solid ${G}`,padding:"18px 22px",minWidth:170}}>
               <div style={{fontFamily:"'Montserrat',sans-serif",fontSize:8,color:G,letterSpacing:3,marginBottom:5}}>COURSE FEE</div>
